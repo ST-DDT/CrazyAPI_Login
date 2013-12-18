@@ -15,6 +15,7 @@ import de.st_ddt.crazyplugin.exceptions.CrazyException;
 public final class EncryptHelper
 {
 
+	private static final char[] CRYPTCHARS = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
 	private static final Map<String, Class<? extends Encryptor>> encryptors = new TreeMap<String, Class<? extends Encryptor>>(String.CASE_INSENSITIVE_ORDER);
 
 	protected EncryptHelper()
@@ -111,13 +112,12 @@ public final class EncryptHelper
 
 	public static String byteArrayToHexString(final byte... args)
 	{
-		final StringBuilder res = new StringBuilder();
-		final String[] chars = new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f" };
-		for (final byte arg : args)
+		final char[] chars = new char[args.length * 2];
+		for (int i = 0; i < args.length; i++)
 		{
-			res.append(chars[(arg >> 4) + 16]);
-			res.append(chars[arg % 16 + 16]);
+			chars[i * 2] = CRYPTCHARS[(args[i] >> 4) & 0xF];
+			chars[i * 2 + 1] = CRYPTCHARS[(args[i]) & 0xF];
 		}
-		return res.toString();
+		return new String(chars);
 	}
 }
