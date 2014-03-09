@@ -37,12 +37,12 @@
 		<dependency>
 			<groupId>de.st_ddt.crazy</groupId>
 			<artifactId>CrazyAPI</artifactId>
-			<version>LATEST</version>
+			<version>10.8</version>
 		</dependency>
 		<dependency>
 			<groupId>de.st_ddt.crazy</groupId>
 			<artifactId>CrazyModule_Login</artifactId>
-			<version>LATEST</version>
+			<version>1.0</version>
 		</dependency>
 	</dependencies>
 
